@@ -1,0 +1,37 @@
+model {
+  name: "yolov3_tiny_drone"
+  kernel {
+     name: "yolov3_tiny_drone"
+     mean: 0.0
+     mean: 0.0
+     mean: 0.0
+     scale: 0.00390625
+  }
+  model_type: YOLOv3
+  yolo_v3_param {
+    num_classes: 1
+    anchorCnt: 3
+    # Layer names must match the xmodel output tensors exactly.
+    # Based on StaticYOLOv3Tiny.py, these are the likely names:
+    layer_name: "StaticYOLOv3Tiny__StaticYOLOv3Tiny_Conv2d_conv15__1480"
+    layer_name: "StaticYOLOv3Tiny__StaticYOLOv3Tiny_Conv2d_conv22__1561"
+    conf_threshold: 0.3
+    nms_threshold: 0.45
+    # Anchors reordered based on masks:
+    # First layer (conv15) uses masks 3,4,5 (Large anchors)
+    biases: 81
+    biases: 82
+    biases: 135
+    biases: 169
+    biases: 344
+    biases: 319
+    # Second layer (conv22) uses masks 0,1,2 (Small anchors)
+    biases: 10
+    biases: 14
+    biases: 23
+    biases: 27
+    biases: 37
+    biases: 58
+    test_mAP: false
+  }
+}
